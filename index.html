@@ -236,7 +236,7 @@
                 <label for="pph-terutang" class="col-sm-5 col-form-label">PPh Terutang sebesar</label>
               </div>
               <div class="row mb-3">
-                <label for="tarif-pph" class="col-sm-5 col-form-label">Tarif PPh Ps. 17 Ayat 1</label>
+                <label for="tarif-pph" id="tarif-pph-label" class="col-sm-5 col-form-label">Tarif PPh Ps. 17 Ayat 1</label>
                 <div class="col-sm-7">
                   <input type="text" class="form-control" id="tarif-pph" placeholder="Rp-" readonly>
                   <button class="btn btn-success mt-1" id="btn-pph-28">Lanjut Hitung PPh 28/29</button>
@@ -594,9 +594,10 @@ $(document).ready(function() {
     var output_tarif_pph= roundedOutput1 * 0.22 * 0.50
     var output_pajak_penghasilan_17 = output_tarif_pph - output2
     var label_text = output_pajak_penghasilan_17 >= 0 ? "Kurang Bayar (PPh Ps 29)" : "Lebih Bayar (PPh Ps 28A)";
-    
+    var label_text2 = "Tarif PPh Pasal 31E Ayat 1"
     // Set the label text
     $("#pajak-17-label").text(label_text);
+    $("#tarif-pph-label").text(label_text2);
     // Tampilkan hasil perhitungan di elemen output yang sesuai
     $("#hasil-pkp").val(new Intl.NumberFormat('en-US').format(roundedOutput1));
     $("#tarif-pph").val(new Intl.NumberFormat('en-US').format(output_tarif_pph));
@@ -632,9 +633,10 @@ $(document).ready(function() {
     console.log(output_tarif_pph)
     var output_pajak_penghasilan_17 = output_tarif_pph - output2
     var label_text = output_pajak_penghasilan_17 >= 0 ? "Kurang Bayar (PPh Ps 29)" : "Lebih Bayar (PPh Ps 28A)";
-    
+    var label_text2 = "Tarif PPh Pasal 31E Ayat 1"
     // Set the label text
     $("#pajak-17-label").text(label_text);
+    $("#tarif-pph-label").text(label_text2);
     // Tampilkan hasil perhitungan di elemen output yang sesuai
     $("#hasil-pkp").val(new Intl.NumberFormat('en-US').format(roundedOutput1));
     $("#tarif-pph").val(new Intl.NumberFormat('en-US').format(output_tarif_pph));
@@ -648,10 +650,10 @@ $(document).ready(function() {
     var input1 = $("#penghasilan-netto").val() || "0";
     var input2 = $("#kompensasi-kerugian").val() || "0";
     var input3 = parseFloat($("#pph-22").val().replace(/[^0-9]/g, '')) || 0; // Convert to number
-    var input4 = parseFloat($("#pph-23").val()) || 0; // Convert to number
-    var input5 = parseFloat($("#pph-25").val()) || 0; // Convert to number
-    var input6 = parseFloat($("#pph-25-stp").val()) || 0;
-    var input7 = parseFloat($("#omset").val().replace(/[^0-9]/g, '')) || 0;
+    var input4 = parseFloat($("#pph-23").val().replace(/[^0-9]/g, '')) || 0; // Convert to number
+    var input5 = parseFloat($("#pph-25").val().replace(/[^0-9]/g, '')) || 0; // Convert to number
+    var input6 = parseFloat($("#pph-25-stp").val().replace(/[^0-9]/g, '')) || 0;
+    var input7 = parseFloat($("#omset").val()) || 0;
     var hasilPkp = $("#hasil-pkp").val();
     console.log(input7)
 
