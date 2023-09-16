@@ -27,7 +27,9 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-
+  <!-- <style>#tabel-invisible {
+    display: none;
+}</style> -->
   <!-- =======================================================
   * Template Name: Impact
   * Updated: Jul 27 2023 with Bootstrap v5.3.1
@@ -105,7 +107,7 @@
           <p>Website perhitungan Pajak Penghasilan Badan Khusus Transaksi dalam Negeri</p>
           
           <div class="d-flex justify-content-center justify-content-lg-start">
-            <a href="#about" class="btn-get-started">Get Started</a>
+            <a href="#services" class="btn-get-started">Get Started</a>
             
           </div>
         </div>
@@ -237,10 +239,9 @@
                 <div class="col-sm-7">
                   <input type="text" class="form-control" id="tarif-pph" placeholder="Rp-" readonly>
                   <button class="btn btn-success mt-1" id="btn-pph-28">Lanjut Hitung PPh 28/29</button>
+                  <button id="cetak-tabel" class="btn btn-primary" >Cetak Tabel</button>
+
                 </div>
-            
-               
-                
               </div>
             </form>
           </div>
@@ -354,6 +355,8 @@
 
           </div>
 
+           
+
           <div class="col-lg-8">
             <form action="forms/contact.php" method="post" role="form" class="php-email-form">
               <div class="row">
@@ -385,7 +388,125 @@
     </section><!-- End Contact Section -->
 
   </main><!-- End #main -->
-
+  <div id="page-content">
+  <div id="print-container" style="display: none;">
+  <table id="table table-bordered" class="table">
+    <thead>
+        <tr>
+            <th >A. Penghasilan Kena Pajak/PKP</th>
+            
+        </tr>
+    </thead>
+    <tbody >
+        <tr>
+            <td>Berapa penghasilan netto fiskal anda?</td>
+            <td>Rp
+                <span id="p-penghasilan-netto"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Kompensasi Kerugian Fiskal</td>
+            <td>Rp
+                <!-- <input type="text" class="form-control" id="kompensasi-kerugian" placeholder="0"> -->
+                <span id="p-kompensasi-kerugian"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Penghasilan Kena pajak(1-2)</td>
+            <td>Rp
+                <!-- <input type="text" class="form-control" id="hasil-pkp" placeholder="Rp-" readonly> -->
+                <span  id="p-hasil-pkp"></span>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>B. Pph Terutang</strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Omzet disetahunkan</td>
+            <td>Rp
+              <span  id="p-omset"></span>
+            </td>
+        </tr>
+        <tr>
+            <td><label id="p-tarif-pph-label">Tarif PPh Ps. 17 Ayat 1</label></td>
+            <td>Rp
+              <span id="p-tarif-pph" ></span>
+            </td>
+        </tr>
+        <tr>
+            <td><label id="p-pkp-label">22% x Penghasilan Kena Pajak</label></td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>C. Kredit Pajak</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>4. Pph 22</td>
+            <td>Rp
+              <span id="p-pph-22" ></span>
+            </td>
+        </tr>
+        <tr>
+            <td>5. Pph 23</td>
+            <td>Rp
+              <span id="p-pph-23" ></span>
+            </td>
+        </tr>
+        <tr>
+            <td>6. Pph 25 Bulanan</td>
+            <td>Rp
+              <span id="p-pph-25" ></span>
+            </td>
+        </tr>
+        <tr>
+            <td>7. STP Pph Ps.25 (Hanya Pokok Pajak)</td>
+            <td>Rp
+              <span id="p-pph-25-stp" ></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Jumlah (4+5+6+7)</td>
+            <td>Rp
+              <span id="p-jmlh-kredit-pajak" ></span>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>D. Keterangan</strong> </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>PPh yang dibayar </strong> </td>
+            <td>Rp
+              <span id="p-pajak-penghasilan-17"></span>
+            </td>
+        </tr>
+        <tr>
+            <td> </td>
+            <td>
+              <label for="pph-terutang" id="p-pajak-17-label" class="col-sm-10">Kurang Bayar (PPh Ps 29)</label>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+<!-- <div id="page-content">
+<div id="print-container" style="display: none;">
+  <h2>Hasil Perhitungan Pajak Pasal 17 Ayat 1</h2>
+  <p><strong>Pajak:</strong> <span id="p-pajak-17-label"></span></p>
+  <p><strong>Penghasilan Kena Pajak/PKP:</strong> <span id="hasil-pkp"></span></p>
+  <p><strong>Tarif PPh:</strong> <span id="tarif-pph"></span></p>
+  <p><strong>Jumlah Kredit Pajak:</strong> <span id="jmlh-kredit-pajak"></span></p>
+  <p><strong>Pajak Penghasilan 17:</strong> <span id="pajak-penghasilan-17"></span></p>
+  <p><strong>Penghasilan Netto:</strong> <span id="p-penghasilan-netto"></span></p>
+</div>
+</div> -->
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
 
@@ -563,7 +684,14 @@ $(document).ready(function() {
     var roundedOutput1 = Math.floor(output1/1000) * 1000;
     var output_tarif_pph= roundedOutput1 * 0.22
     var output_pajak_penghasilan_17 = output_tarif_pph - output2
-    var label_text = output_pajak_penghasilan_17 >= 0 ? "Kurang Bayar (PPh Ps 29)" : "Lebih Bayar (PPh Ps 28A)";
+    var label_text = '';
+    if (output_pajak_penghasilan_17 === 0) {
+        label_text = "Nihil";
+    } else if (output_pajak_penghasilan_17 > 0) {
+        label_text = "Kurang Bayar (PPh Ps 29)";
+    } else {
+        label_text = "Lebih Bayar (PPh Ps 28A)";
+    }
     
     // Set the label text
     $("#pajak-17-label").text(label_text);
@@ -572,7 +700,7 @@ $(document).ready(function() {
     $("#tarif-pph").val(new Intl.NumberFormat('en-US').format(output_tarif_pph));
     $("#jmlh-kredit-pajak").val(new Intl.NumberFormat('en-US').format(output2));
     $("#pajak-penghasilan-17").val(new Intl.NumberFormat('en-US').format(output_pajak_penghasilan_17));
-
+    $("#p-penghasilan-netto").val(new Intl.NumberFormat('en-US').format(input1));
   }
 
   function hitungPajakPs31e1(input1, input2, input3, input4, input5, input6) {
@@ -591,7 +719,14 @@ $(document).ready(function() {
     var roundedOutput1 = Math.floor(output1/1000) * 1000;
     var output_tarif_pph= roundedOutput1 * 0.22 * 0.50
     var output_pajak_penghasilan_17 = output_tarif_pph - output2
-    var label_text = output_pajak_penghasilan_17 >= 0 ? "Kurang Bayar (PPh Ps 29)" : "Lebih Bayar (PPh Ps 28A)";
+    var label_text = '';
+    if (output_pajak_penghasilan_17 === 0) {
+        label_text = "Nihil";
+    } else if (output_pajak_penghasilan_17 > 0) {
+        label_text = "Kurang Bayar (PPh Ps 29)";
+    } else {
+        label_text = "Lebih Bayar (PPh Ps 28A)";
+    }
     var label_text2 = "Tarif PPh Pasal 31E Ayat 1"
     // Set the label text
     $("#pajak-17-label").text(label_text);
@@ -618,7 +753,8 @@ $(document).ready(function() {
    
     var roundedOutput1 = Math.floor(output1/1000) * 1000;
     
-
+    console.log(roundedOutput1)
+    console.log(input7)
     var output_tarif_pph;
     if (input7 === 0) {
         output_tarif_pph = 0;
@@ -630,7 +766,14 @@ $(document).ready(function() {
     //var output_tarif_pph = (0.22 * 0.50 * (4800000000 / input7) * roundedOutput1) + (0.22 * (roundedOutput1 - (4800000000 / input7 * roundedOutput1)));
     console.log(output_tarif_pph)
     var output_pajak_penghasilan_17 = output_tarif_pph - output2
-    var label_text = output_pajak_penghasilan_17 >= 0 ? "Kurang Bayar (PPh Ps 29)" : "Lebih Bayar (PPh Ps 28A)";
+    var label_text = '';
+    if (output_pajak_penghasilan_17 === 0) {
+        label_text = "Nihil";
+    } else if (output_pajak_penghasilan_17 > 0) {
+        label_text = "Kurang Bayar (PPh Ps 29)";
+    } else {
+        label_text = "Lebih Bayar (PPh Ps 28A)";
+    }
     var label_text2 = "Tarif PPh Pasal 31E Ayat 1"
     // Set the label text
     $("#pajak-17-label").text(label_text);
@@ -651,9 +794,9 @@ $(document).ready(function() {
     var input4 = parseFloat($("#pph-23").val().replace(/[^0-9]/g, '')) || 0; // Convert to number
     var input5 = parseFloat($("#pph-25").val().replace(/[^0-9]/g, '')) || 0; // Convert to number
     var input6 = parseFloat($("#pph-25-stp").val().replace(/[^0-9]/g, '')) || 0;
-    var input7 = parseFloat($("#omset").val()) || 0;
+    var input7 = parseFloat($("#omset").val().replace(/[^0-9]/g, '')) || 0;
     var hasilPkp = $("#hasil-pkp").val();
-    console.log(input7)
+   
 
     var activeLinkId = $('.list-group-item.active').attr('id');
     
@@ -676,49 +819,307 @@ $(document).ready(function() {
   hitungPajak();
 
   // Tambahkan event listener pada input yang diperlukan
-  $("#penghasilan-netto, #kompensasi-kerugian, #pph-22, #pph-23, #pph-25, #pph-25-stp, #omset").on("input", hitungPajak);
+  $("#penghasilan-netto, #kompensasi-kerugian, #pph-22, #pph-23, #pph-25, #pph-25-stp, #omset, #p-penghasilan-netto").on("input", hitungPajak);
 
   // Tambahkan event listener pada list-group items
   $('.list-group-item').on('click', function() {
     $('.list-group-item').removeClass('active');
     $(this).addClass('active');
     hitungPajak(); // Call hitungPajak when list-group item is clicked
+    
   });
-});
 
-  // function hitungPajak(){
-  // // Ambil nilai dari setiap elemen input
-  // var input1 = document.getElementById("penghasilan-netto").value;
-  // var input2 = document.getElementById("kompensasi-kerugian").value;
-
-  // console.log(input2)
-
-  // // format angka menjadi IDR
-
-
-  // //Auto Checked on Radio Button
-
-  
+  function cetakTabelPs17(input1,input2,input3,input4,input5,input6,input7) {
+    var output1 = input1 - input2;
+    if (isNaN(output1)) {
+      output1 = 0;
+    } 
 
    
+    var output2 = input3 + input4 + input5 + input6;
+   
+    var roundedOutput1 = Math.floor(output1/1000) * 1000;
+    var output_tarif_pph= roundedOutput1 * 0.22
+    var output_pajak_penghasilan_17 = output_tarif_pph - output2
+    console.log(output_pajak_penghasilan_17)
+    var label_text = '';
+    if (output_pajak_penghasilan_17 === 0) {
+        label_text = "Nihil";
+    } else if (output_pajak_penghasilan_17 > 0) {
+        label_text = "Kurang Bayar (PPh Ps 29)";
+    } else {
+        label_text = "Lebih Bayar (PPh Ps 28A)";
+    }
+    console.log(label_text)
+    $("#p-pajak-17-label").text(label_text);
+    $("#print-container #p-penghasilan-netto").html(new Intl.NumberFormat('en-US').format(input1));
+    $("#print-container #p-kompensasi-kerugian").html(new Intl.NumberFormat('en-US').format(input2));
+    $("#print-container #p-hasil-pkp").html(new Intl.NumberFormat('en-US').format(roundedOutput1));
+    $("#print-container #p-omset").html(new Intl.NumberFormat('en-US').format(input7));
+    $("#print-container #p-tarif-pph").html(new Intl.NumberFormat('en-US').format(output_tarif_pph));
+    $("#print-container #p-pph-22").html(new Intl.NumberFormat('en-US').format(input3));
+    $("#print-container #p-pph-23").html(new Intl.NumberFormat('en-US').format(input4));
+    $("#print-container #p-pph-25").html(new Intl.NumberFormat('en-US').format(input5));
+    $("#print-container #p-pph-25-stp").html(new Intl.NumberFormat('en-US').format(input6));
+    $("#print-container #p-jmlh-kredit-pajak").html(new Intl.NumberFormat('en-US').format(output2));
+    $("#print-container #p-pajak-penghasilan-17").html(new Intl.NumberFormat('en-US').format(output_pajak_penghasilan_17));
+    // Buat tabel dalam bentuk string HTML
+    
 
-  // // Ambil 11 nilai input dan output tambahan di sini
+    // Show the print container
+    $("#print-container").css("display", "block");
+
   
+    //var printContents = $("#print-container").html();
 
-  // // Lakukan perhitungan sesuai rumus PPH Pasal 29
-  // var output1 = input1 - input2;
- 
+    // Membuka tab cetakan
+    var cetakWindow = window.open('', '_blank');
+    cetakWindow.document.open();
+    cetakWindow.document.write(`
+        <html>
+        <head>
+            <!-- Gaya cetakan bisa disisipkan di sini -->
+          <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+        <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+        <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+          <title>Taxculate</title>
+        </head>
+        <body>
+            ${$("#print-container").html()}
+        </body>
+        </html>
+    `);
+    cetakWindow.document.close();
 
-  // // Tampilkan hasil perhitungan di elemen output yang sesuai
-  // document.getElementById("hasil-pkp").value = output1;
+    
 
-  // document.getElementById("hasil-pkp").addEventListener("input", hitungPajak);
+    // Kembalikan halaman ke keadaan semula setelah mencetak
+    $("#print-container").css("display", "none");
+   
+  
+  }
+
+  function cetakTabelPs31e1(input1,input2,input3,input4,input5,input6,input7) {
+    var output1 = input1 - input2;
+    if (isNaN(output1)) {
+      output1 = 0;
+    } 
+
+   
+    var output2 = input3 + input4 + input5 + input6;
+   
+    var roundedOutput1 = Math.floor(output1/1000) * 1000;
+    var output_tarif_pph= roundedOutput1 * 0.22 * 0.50
+    var output_pajak_penghasilan_17 = output_tarif_pph - output2
+    console.log(output_pajak_penghasilan_17)
+    var label_text = '';
+    if (output_pajak_penghasilan_17 === 0) {
+        label_text = "Nihil";
+    } else if (output_pajak_penghasilan_17 > 0) {
+        label_text = "Kurang Bayar (PPh Ps 29)";
+    } else {
+        label_text = "Lebih Bayar (PPh Ps 28A)";
+    }
+    var label_text2 = "Tarif PPh Pasal 31E Ayat 1"
+    var label_text3 = "(50% x 22% x PKP)"
+    console.log(label_text)
+    $("#p-pajak-17-label").text(label_text);
+    $("#p-tarif-pph-label").text(label_text2);
+    $("#p-pkp-label").text(label_text3);
+    $("#print-container #p-penghasilan-netto").html(new Intl.NumberFormat('en-US').format(input1));
+    $("#print-container #p-kompensasi-kerugian").html(new Intl.NumberFormat('en-US').format(input2));
+    $("#print-container #p-hasil-pkp").html(new Intl.NumberFormat('en-US').format(roundedOutput1));
+    $("#print-container #p-omset").html(new Intl.NumberFormat('en-US').format(input7));
+    $("#print-container #p-tarif-pph").html(new Intl.NumberFormat('en-US').format(output_tarif_pph));
+    $("#print-container #p-pph-22").html(new Intl.NumberFormat('en-US').format(input3));
+    $("#print-container #p-pph-23").html(new Intl.NumberFormat('en-US').format(input4));
+    $("#print-container #p-pph-25").html(new Intl.NumberFormat('en-US').format(input5));
+    $("#print-container #p-pph-25-stp").html(new Intl.NumberFormat('en-US').format(input6));
+    $("#print-container #p-jmlh-kredit-pajak").html(new Intl.NumberFormat('en-US').format(output2));
+    $("#print-container #p-pajak-penghasilan-17").html(new Intl.NumberFormat('en-US').format(output_pajak_penghasilan_17));
+
+    // Buat tabel dalam bentuk string HTML
+    
+
+    // Show the print container
+    $("#print-container").css("display", "block");
 
   
- 
-  // }
+    //var printContents = $("#print-container").html();
+
+    // Membuka tab cetakan
+    var cetakWindow = window.open('', '_blank');
+    cetakWindow.document.open();
+    cetakWindow.document.write(`
+        <html>
+        <head>
+            <!-- Gaya cetakan bisa disisipkan di sini -->
+          <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+        <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+        <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+          <title>Taxculate</title>
+        </head>
+        <body>
+            ${$("#print-container").html()}
+        </body>
+        </html>
+    `);
+    cetakWindow.document.close();
+
+    
+
+    // Kembalikan halaman ke keadaan semula setelah mencetak
+    $("#print-container").css("display", "none");
+   
+  
+  }
+
+  function cetakTabelPs31e2(input1,input2,input3,input4,input5,input6,input7) {
+    var output1 = input1 - input2;
+    if (isNaN(output1)) {
+      output1 = 0;
+    } 
+
+   
+    var output2 = input3 + input4 + input5 + input6;
+   
+    var roundedOutput1 = Math.floor(output1/1000) * 1000;
+    var output_tarif_pph;
+    if (input7 === 0) {
+        output_tarif_pph = 0;
+    } else {
+        output_tarif_pph = (0.22 * 0.50 * (4800000000 / input7 * roundedOutput1)) + (0.22 * (roundedOutput1 - (4800000000 / input7 * roundedOutput1)));
+    }
+
+    var output_pajak_penghasilan_17 = output_tarif_pph - output2
+    console.log(output_pajak_penghasilan_17)
+    var label_text = '';
+    if (output_pajak_penghasilan_17 === 0) {
+        label_text = "Nihil";
+    } else if (output_pajak_penghasilan_17 > 0) {
+        label_text = "Kurang Bayar (PPh Ps 29)";
+    } else {
+        label_text = "Lebih Bayar (PPh Ps 28A)";
+    }
+    var label_text2 = "Tarif PPh Pasal 31E Ayat 1"
+    var label_text3 = "(50% x 22% x PKP) + (22% x PKP)"
+    console.log(label_text)
+    $("#p-pajak-17-label").text(label_text);
+    $("#p-tarif-pph-label").text(label_text2);
+    $("#p-pkp-label").text(label_text3);
+    $("#print-container #p-penghasilan-netto").html(new Intl.NumberFormat('en-US').format(input1));
+    $("#print-container #p-kompensasi-kerugian").html(new Intl.NumberFormat('en-US').format(input2));
+    $("#print-container #p-hasil-pkp").html(new Intl.NumberFormat('en-US').format(roundedOutput1));
+    $("#print-container #p-omset").html(new Intl.NumberFormat('en-US').format(input7));
+    $("#print-container #p-tarif-pph").html(new Intl.NumberFormat('en-US').format(output_tarif_pph));
+    $("#print-container #p-pph-22").html(new Intl.NumberFormat('en-US').format(input3));
+    $("#print-container #p-pph-23").html(new Intl.NumberFormat('en-US').format(input4));
+    $("#print-container #p-pph-25").html(new Intl.NumberFormat('en-US').format(input5));
+    $("#print-container #p-pph-25-stp").html(new Intl.NumberFormat('en-US').format(input6));
+    $("#print-container #p-jmlh-kredit-pajak").html(new Intl.NumberFormat('en-US').format(output2));
+    $("#print-container #p-pajak-penghasilan-17").html(new Intl.NumberFormat('en-US').format(output_pajak_penghasilan_17));
+
+    // Buat tabel dalam bentuk string HTML
+
+    // Show the print container
+    $("#print-container").css("display", "block");
+
+  
+    //var printContents = $("#print-container").html();
+
+    // Membuka tab cetakan
+    var cetakWindow = window.open('', '_blank');
+    cetakWindow.document.open();
+    cetakWindow.document.write(`
+        <html>
+        <head>
+            <!-- Gaya cetakan bisa disisipkan di sini -->
+          <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+        <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+        <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+          <title>Taxculate</title>
+        </head>
+        <body>
+            ${$("#print-container").html()}
+        </body>
+        </html>
+    `);
+    cetakWindow.document.close();
+
+    
+
+    // Kembalikan halaman ke keadaan semula setelah mencetak
+    $("#print-container").css("display", "none");
+   
+  
+  }
+  
+  
+  function cetakTabel() {
+    
+  var input1 = parseFloat($("#penghasilan-netto").val().replace(/[^0-9]/g, '')) || 0;
+  var input2 = parseFloat($("#kompensasi-kerugian").val().replace(/[^0-9]/g, '')) || 0;
+  var input3 = parseFloat($("#pph-22").val().replace(/[^0-9]/g, '')) || 0;
+  var input4 = parseFloat($("#pph-23").val().replace(/[^0-9]/g, '')) || 0;
+  var input5 = parseFloat($("#pph-25").val().replace(/[^0-9]/g, '')) || 0;
+  var input6 = parseFloat($("#pph-25-stp").val().replace(/[^0-9]/g, '')) || 0;
+  var input7 = parseFloat($("#omset").val().replace(/[^0-9]/g, '')) || 0;
+  console.log(input1)
+
+
+  var activeLinkId = $('.list-group-item.active').attr('id');
+    
+    if (activeLinkId === 'pasal-17-ayat-1') {
+      // Call the hitungPajak function
+      cetakTabelPs17(input1, input2, input3, input4, input5, input6,input7);
+    } else if (activeLinkId === 'pasal-31e-1') {
+      // Call the hitungPajak31e1 function
+      cetakTabelPs31e1(input1, input2, input3, input4, input5, input6, input7);
+    } else if (activeLinkId === 'pasal-31e-2'){
+      // Default behavior or other conditions
+      cetakTabelPs31e2(input1, input2, input3, input4, input5, input6, input7);
+    } else {
+
+    }
+  var output1 = input1 - input2;
+    if (isNaN(output1)) {
+      output1 = 0;
+    } 
+
+   
+    var output2 = input3 + input4 + input5 + input6;
+   
+    var roundedOutput1 = Math.floor(output1/1000) * 1000;
+    var output_tarif_pph= roundedOutput1 * 0.22
+    var output_pajak_penghasilan_17 = output_tarif_pph - output2
+    console.log(output_pajak_penghasilan_17)
+    var label_text = '';
+    if (output_pajak_penghasilan_17 === 0) {
+        label_text = "Nihil";
+    } else if (output_pajak_penghasilan_17 > 0) {
+        label_text = "Kurang Bayar (PPh Ps 29)";
+    } else {
+        label_text = "Lebih Bayar (PPh Ps 28A)";
+    }
+  
+  
+  }
+  $("#cetak-tabel").on("click", function() {
+    cetakTabel();
+    return false;
+  });
+  
+});
+
+
   </script>
 
-</body>
+
 
 </html>
