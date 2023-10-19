@@ -72,8 +72,8 @@
           <!-- <li><a href="#about">Panduan</a></li> -->
           <li class="dropdown"><a href="#"><span>Panduan</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>           
-              <li><a href="https://drive.google.com/file/d/1Oj7vNxASLHvZhO_lFv8v8jm-TtRuqDmC/view?usp=drive_link" target="_blank">Download Buku Materi</a></li>
-              <li><a href="https://drive.google.com/file/d/1t5pFE-quPO2o4lTDvS0rlKcw7-9GsMPQ/view?usp=sharing" target="_blank">Download Buku Panduan</a></li>
+              <li><a href="https://drive.google.com/file/d/1Oj7vNxASLHvZhO_lFv8v8jm-TtRuqDmC/view?usp=drive_link" target="_blank">Donwload Buku Materi</a></li>
+              <li><a href="https://drive.google.com/file/d/1aF1eT0g22C4wgx7Y5YMSFkpxJibrRmNS/view?usp=drive_link" target="_blank">Download Buku Panduan</a></li>
 
                
             </ul>
@@ -124,7 +124,7 @@
           <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-book"></i></div>
-              <h4 class="title"><a href="#services" class="stretched-link">Pasal 31E Ayat 1</a></h4>
+              <h4 class="title"><a href="" class="stretched-link">Pasal 31E Ayat 1</a></h4>
             </div>
           </div><!--End Icon Box -->
 
@@ -152,7 +152,7 @@
           <div class="col-lg-6">
             <h3>Perhatian</h3>
           <p>1. Kalkulator ini dapat digunakan untuk menghitung Pajak Penghasilan Badan Terutang sampai dengan Pajak Penghasilan Badan pasal 29. </p>
-          <p>2. Kalkulator ini cocok digunakan untuk badan usaha yang sudah tidak menggunakan tarif PPh Final 0,5% PP No. 55 Tahun 2022</p>
+          <p>2. Kalkulator ini cocok digunakan untuk badan usaha yang sudah tidak menggunakan tarif PPh Final 0,5% PP 23 Tahun 2018</p>
           <p>3. Kalkulator disusun sesuai dengan peraturan yang berlaku saat kalkulator dipublikasikan (Tahun 2023)</p>
           <p>4. <strong>Wajib </strong>membaca Buku Panduan dan Buku Materi sebelum menggunakan kalkulator ini </p>
           <p>5. Silahkan untuk mengisi penilaian dan saran pada form yang telah disediakan agar kalkulator ini dapat berkembang lebih baik lagi </p>
@@ -168,9 +168,9 @@
                 <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
                   Silahkan pilih jenis pasal yang akan digunakan
                 </a>
-                <a href="#form-pajak" id="pasal-17-ayat-1" class="list-group-item list-group-item-action">Pasal 17 Ayat 1</a>
-                <a href="#" id="pasal-31e-1" class="list-group-item list-group-item-action">Pasal 31E Ayat 1 Omzet &lt;=4,8M</a>
-                <a href="#" id="pasal-31e-2" class="list-group-item list-group-item-action">Pasal 31E Ayat 1 Omzet &gt;4.8M - 50M</a>
+                <a href="#form-pajak" id="pasal-17-ayat-1" class="list-group-item list-group-item-action" title="Digunakan apabila PKP lebih dari 4,8M dan omzet lebih dari 50M">Pasal 17 Ayat 1</a>
+                <a href="#" id="pasal-31e-1" class="list-group-item list-group-item-action" title="Digunakan apabila omzet kurang dari 50M dan pkp kurang dari 4,8M" >Pasal 31E Ayat 1 </a>
+                
                 
               </div>
               
@@ -217,7 +217,7 @@
                 
               </div>
               <div class="row mb-3">
-                <label for="pph-terutang" class="col-sm-5 col-form-label">Berapa Omzet Anda?</label>
+                <label for="pph-terutang" class="col-sm-5 col-form-label">Berapa Omset Anda?</label>
                 <div class="col-sm-7">
                   <input type="text" class="form-control" id="omset">
                 </div>
@@ -579,11 +579,11 @@
   const pasal31Ayat12Link = document.getElementById('pasal-31e-2');
   
   // Add click event listener to the Pasal 17 Ayat 1 link
-  pasal31Ayat12Link.addEventListener('click', (event) => {
-      event.preventDefault(); // Prevent default link behavior
-      formPasal31Ayat12.classList.remove('d-none'); // Display the form
-      formPasal31Ayat12.scrollIntoView({ behavior: 'smooth' });
-  });
+  // pasal31Ayat12Link.addEventListener('click', (event) => {
+  //     event.preventDefault(); // Prevent default link behavior
+  //     formPasal31Ayat12.classList.remove('d-none'); // Display the form
+  //     formPasal31Ayat12.scrollIntoView({ behavior: 'smooth' });
+  // });
 
 
   function formatInputWithThousandSeparators(inputElement) {
@@ -650,21 +650,33 @@ $(document).ready(function() {
     $("#p-penghasilan-netto").val(new Intl.NumberFormat('en-US').format(input1));
   }
 
-  function hitungPajakPs31e1(input1, input2, input3, input4, input5, input6) {
+  function hitungPajakPs31e1(input1, input2, input3, input4, input5, input6, input7) {
     // Your calculations specific to Pasal 17 Ayat 1
     // Lakukan perhitungan sesuai rumus PPH Pasal 29
 
     var output1 = parseFloat(input1.replace(/[^0-9]/g, '')) - parseFloat(input2.replace(/[^0-9]/g, ''));
+    console.log("Output1: ", output1);
+
     if (isNaN(output1)) {
       output1 = 0;
     } 
     //tes
-
+    
    
     var output2 = input3 + input4 + input5 + input6;
    
     var roundedOutput1 = Math.floor(output1/1000) * 1000;
-    var output_tarif_pph= roundedOutput1 * 0.22 * 0.50
+    console.log(roundedOutput1)
+    var output_tarif_pph;
+    if (roundedOutput1 <= 4800000000) {
+      output_tarif_pph = roundedOutput1 * 0.22 * 0.50;
+    } else if(input7 === 0){
+      output_tarif_pph = 0;
+    } else if (input7 !== 0) {
+      output_tarif_pph = (0.22 * 0.50 * (4800000000 / input7 * roundedOutput1)) + (0.22 * (roundedOutput1 - (4800000000 / input7 * roundedOutput1)));
+    }
+    console.log(input7)
+    
     var output_pajak_penghasilan_17 = output_tarif_pph - output2
     var label_text = '';
     if (output_pajak_penghasilan_17 === 0) {
@@ -752,7 +764,7 @@ $(document).ready(function() {
       hitungPajakPs17(input1, input2, input3, input4, input5, input6);
     } else if (activeLinkId === 'pasal-31e-1') {
       // Call the hitungPajak31e1 function
-      hitungPajakPs31e1(input1, input2, input3, input4, input5, input6);
+      hitungPajakPs31e1(input1, input2, input3, input4, input5, input6,input7);
     } else if (activeLinkId === 'pasal-31e-2'){
       // Default behavior or other conditions
       hitungPajakPs31e2(input1, input2, input3, input4, input5, input6, input7);
@@ -858,7 +870,19 @@ $(document).ready(function() {
     var output2 = input3 + input4 + input5 + input6;
    
     var roundedOutput1 = Math.floor(output1/1000) * 1000;
-    var output_tarif_pph= roundedOutput1 * 0.22 * 0.50
+    
+
+    var output_tarif_pph;
+    
+    if (roundedOutput1 <= 4800000000) {
+      var label_text3 = "(50% x 22% x PKP)"
+      output_tarif_pph = roundedOutput1 * 0.22 * 0.50;
+    } else if(input7 === 0){
+      output_tarif_pph = 0;
+    } else if (input7 !== 0) {
+      var label_text3 = "(50% x 22% x PKP) + (22% x PKP)"
+      output_tarif_pph = (0.22 * 0.50 * (4800000000 / input7 * roundedOutput1)) + (0.22 * (roundedOutput1 - (4800000000 / input7 * roundedOutput1)));
+    }
     var output_pajak_penghasilan_17 = output_tarif_pph - output2
     console.log(output_pajak_penghasilan_17)
     var label_text = '';
@@ -870,7 +894,7 @@ $(document).ready(function() {
         label_text = "Lebih Bayar (PPh Ps 28A)";
     }
     var label_text2 = "Tarif PPh Pasal 31E Ayat 1"
-    var label_text3 = "(50% x 22% x PKP)"
+    
     console.log(label_text)
     $("#p-pajak-17-label").text(label_text);
     $("#p-tarif-pph-label").text(label_text2);
