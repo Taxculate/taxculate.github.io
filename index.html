@@ -668,7 +668,7 @@ $(document).ready(function() {
     var roundedOutput1 = Math.floor(output1/1000) * 1000;
     console.log(roundedOutput1)
     var output_tarif_pph;
-    if (roundedOutput1 <= 4800000000) {
+    if (roundedOutput1 <= 4800000000 && input7 < 4800000000) {
       output_tarif_pph = roundedOutput1 * 0.22 * 0.50;
     } else if(input7 === 0){
       output_tarif_pph = 0;
