@@ -874,7 +874,7 @@ $(document).ready(function() {
 
     var output_tarif_pph;
     
-    if (roundedOutput1 <= 4800000000) {
+    if (roundedOutput1 <= 4800000000 && input7 < 4800000000 ) {
       var label_text3 = "(50% x 22% x PKP)"
       output_tarif_pph = roundedOutput1 * 0.22 * 0.50;
     } else if(input7 === 0){
